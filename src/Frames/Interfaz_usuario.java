@@ -29,6 +29,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     int borrar_filas = 0;
     Actualizar_datos ad = new Actualizar_datos();
     String Fecha = Agregar_productos_al_carrito.agregar_fecha();
+    int agregar_precio;
 
     public Interfaz_usuario(String usuario, String id) {
         initComponents();
@@ -69,6 +70,59 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jComboproductos.addItem(valor.toString());
         }
         dtm.setRowCount(1);
+    }
+
+    public void agregar_carrito() {
+        int num_productos = Integer.parseInt(txtnumerodeproductos.getText());
+        if (num_productos > 0) {
+            String ruta = "clientes.txt";
+            File archivo = new File(ruta);
+            try {
+                FileReader fr = new FileReader(archivo);
+                BufferedReader br = new BufferedReader(fr);
+                String lea;
+                while ((lea = br.readLine()) != null) {
+                    String vecLinea[];
+                    vecLinea = lea.split(",");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Vector agregarCodido = new Vector();
+            String codigo = jComboproductos.getSelectedItem().toString();
+            agregarCodido = Agregar_productos_al_carrito.agregar_codigo(codigo);
+
+            for (Object valor : agregarCodido) {
+                jTableCarrito.setValueAt(valor.toString(), fila, 2); // Agrega el codigo del producto
+            }
+            int numero_de_productos = Integer.parseInt(txtnumerodeproductos.getText());
+            agregar_precio = Agregar_productos_al_carrito.agregar_Precios(numero_de_productos, 0, jComboproductos.getSelectedItem().toString());
+            jTableCarrito.setValueAt(Integer.toString(agregar_precio), fila, 5);
+            jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), fila, 3);//Agrega el nombre del producto
+            jTableCarrito.setValueAt(txtnumerodeproductos.getText(), fila, 4); //Agrega el numero de producto
+            jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
+            jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
+            jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
+
+            fila++;
+            dtm.setRowCount(fila + 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
+        }
+    }
+
+    public void modificar() {
+        jTableCarrito.setValueAt(txtnumerodeproductos.getText(), jTableCarrito.getSelectedRow(), 4);
+        jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), jTableCarrito.getSelectedRow(), 3);
+        int numero_de_productos = Integer.parseInt(txtnumerodeproductos.getText());
+        agregar_precio = Agregar_productos_al_carrito.agregar_Precios(numero_de_productos, 0, jComboproductos.getSelectedItem().toString());
+        jTableCarrito.setValueAt(Integer.toString(agregar_precio), jTableCarrito.getSelectedRow(), 5);
+        Vector agregarCodido = new Vector();
+        String codigo = jComboproductos.getSelectedItem().toString();
+        agregarCodido = Agregar_productos_al_carrito.agregar_codigo(codigo);
+        for (Object valor : agregarCodido) {
+            jTableCarrito.setValueAt(valor.toString(), jTableCarrito.getSelectedRow(), 2); // Agrega el codigo del producto
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -169,9 +223,19 @@ public class Interfaz_usuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableCarrito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTableCarritoMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableCarrito);
 
         btnmodificarcarrito.setText("Modificar");
+        btnmodificarcarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarcarritoActionPerformed(evt);
+            }
+        });
 
         btneliminarcarrito.setText("Eliminar");
 
@@ -268,45 +332,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnagregarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarcarritoActionPerformed
-        int num_productos = Integer.parseInt(txtnumerodeproductos.getText());
-        if (num_productos > 0) {
-            String ruta = "clientes.txt";
-            File archivo = new File(ruta);
-            try {
-                FileReader fr = new FileReader(archivo);
-                BufferedReader br = new BufferedReader(fr);
-                String lea;
-                while ((lea = br.readLine()) != null) {
-                    String vecLinea[];
-                    vecLinea = lea.split(",");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Vector agregarCodido = new Vector();
-            String codigo = jComboproductos.getSelectedItem().toString();
-            agregarCodido = Agregar_productos_al_carrito.agregar_codigo(codigo);
-
-            for (Object valor : agregarCodido) {
-                jTableCarrito.setValueAt(valor.toString(), fila, 2); // Agrega el codigo del producto
-            }
-
-            int agregar_precio;
-            int numero_de_productos = Integer.parseInt(txtnumerodeproductos.getText());
-            agregar_precio = Agregar_productos_al_carrito.agregar_Precios(numero_de_productos, 0, jComboproductos.getSelectedItem().toString());
-            jTableCarrito.setValueAt(Integer.toString(agregar_precio), fila, 5);
-
-            jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), fila, 3); //Agrega el numero de productos
-            jTableCarrito.setValueAt(txtnumerodeproductos.getText(), fila, 4); //Agrega el nombre del producto
-            jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
-            jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
-            jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
-
-            fila++;
-            dtm.setRowCount(fila + 1);
-        } else {
-            JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
-        }
+        agregar_carrito();
     }//GEN-LAST:event_btnagregarcarritoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -347,6 +373,14 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     private void eliminar_ultima_filaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_ultima_filaActionPerformed
 
     }//GEN-LAST:event_eliminar_ultima_filaActionPerformed
+
+    private void jTableCarritoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarritoMouseReleased
+        txtnumerodeproductos.setText(jTableCarrito.getValueAt(jTableCarrito.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_jTableCarritoMouseReleased
+
+    private void btnmodificarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarcarritoActionPerformed
+        modificar();
+    }//GEN-LAST:event_btnmodificarcarritoActionPerformed
 
     /**
      * @param args the command line arguments

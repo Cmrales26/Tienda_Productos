@@ -231,6 +231,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableCarritoMouseReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -238,6 +241,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmodificarcarritoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btneliminarcarrito">
       <Properties>
