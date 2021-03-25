@@ -9,3 +9,4 @@ Choklitos,800,008
 Fruto (Pera),1400,009
 Galletas (Saltin),2000,010
 Margaritas,1400,011
+DeTodito,2000,012

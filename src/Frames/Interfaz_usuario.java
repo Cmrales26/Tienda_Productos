@@ -24,9 +24,11 @@ import java.io.IOException;
 public class Interfaz_usuario extends javax.swing.JFrame {
 
     DefaultTableModel dtm;
-    String nombre, usuario, id;
+    String usuario, id;
     int fila = 0;
     int borrar_filas = 0;
+    Actualizar_datos ad = new Actualizar_datos();
+    String Fecha = Agregar_productos_al_carrito.agregar_fecha();
 
     public Interfaz_usuario(String usuario, String id) {
         initComponents();
@@ -36,7 +38,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         panefactura.setEditable(false);
         this.setLocationRelativeTo(this);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.nombre = nombre;
         this.usuario = usuario;
         this.id = id;
         String titulos[] = new String[]{
@@ -49,7 +50,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             "Cliente",
             "Id del cliente"};
 
-        dtm = new DefaultTableModel(titulos, 0);
+        dtm = new DefaultTableModel(titulos, 1);
         jTableCarrito.setModel(dtm);
         jTableCarrito.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTableCarrito.getColumnModel().getColumn(0).setPreferredWidth(48);
@@ -57,6 +58,9 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         jTableCarrito.getColumnModel().getColumn(2).setPreferredWidth(30);
         jTableCarrito.getColumnModel().getColumn(3).setPreferredWidth(50);
         jTableCarrito.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jTableCarrito.setValueAt(usuario, 0, 6); // Agrega el usuario
+        jTableCarrito.setValueAt(id, 0, 7); // Agrega la id
+        jTableCarrito.setValueAt(Fecha, 0, 1); // Agrega la fecha
 
         Vector agregarProductos = new Vector();
         agregarProductos = Agregar_productos_al_combo.agregar_productos();
@@ -264,43 +268,45 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnagregarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarcarritoActionPerformed
-        String ruta = "clientes.txt";
-        File archivo = new File(ruta);
-        try {
-            FileReader fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
-            String lea;
-            while ((lea = br.readLine()) != null) {
-                String vecLinea[];
-                vecLinea = lea.split(",");
+        int num_productos = Integer.parseInt(txtnumerodeproductos.getText());
+        if (num_productos > 0) {
+            String ruta = "clientes.txt";
+            File archivo = new File(ruta);
+            try {
+                FileReader fr = new FileReader(archivo);
+                BufferedReader br = new BufferedReader(fr);
+                String lea;
+                while ((lea = br.readLine()) != null) {
+                    String vecLinea[];
+                    vecLinea = lea.split(",");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            Vector agregarCodido = new Vector();
+            String codigo = jComboproductos.getSelectedItem().toString();
+            agregarCodido = Agregar_productos_al_carrito.agregar_codigo(codigo);
+
+            for (Object valor : agregarCodido) {
+                jTableCarrito.setValueAt(valor.toString(), fila, 2); // Agrega el codigo del producto
+            }
+
+            int agregar_precio;
+            int numero_de_productos = Integer.parseInt(txtnumerodeproductos.getText());
+            agregar_precio = Agregar_productos_al_carrito.agregar_Precios(numero_de_productos, 0, jComboproductos.getSelectedItem().toString());
+            jTableCarrito.setValueAt(Integer.toString(agregar_precio), fila, 5);
+
+            jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), fila, 3); //Agrega el numero de productos
+            jTableCarrito.setValueAt(txtnumerodeproductos.getText(), fila, 4); //Agrega el nombre del producto
+            jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
+            jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
+            jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
+
+            fila++;
+            dtm.setRowCount(fila + 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
         }
-        Vector agregarCodido = new Vector();
-        String codigo = jComboproductos.getSelectedItem().toString();
-        agregarCodido = Agregar_productos_al_carrito.agregar_codigo(codigo);
-
-        for (Object valor : agregarCodido) {
-            jTableCarrito.setValueAt(valor.toString(), fila, 2); // Agrega el codigo del producto
-        }
-
-        int agregar_precio;
-        int numero_de_productos = Integer.parseInt(txtnumerodeproductos.getText());
-        agregar_precio = Agregar_productos_al_carrito.agregar_Precios(numero_de_productos, 0, jComboproductos.getSelectedItem().toString());
-        jTableCarrito.setValueAt(Integer.toString(agregar_precio), fila, 5);
-
-        String Fecha = Agregar_productos_al_carrito.agregar_fecha();
-
-        jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), fila, 3); //Agrega el numero de productos
-        jTableCarrito.setValueAt(txtnumerodeproductos.getText(), fila, 4); //Agrega el nombre del producto
-        jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
-        jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
-        jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
-        
-        fila++;
-        dtm.setRowCount(fila+1);
-        
     }//GEN-LAST:event_btnagregarcarritoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -316,9 +322,10 @@ public class Interfaz_usuario extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
         switch (Mensaje) {
             case 0:
-                Modificar_cuenta mc = new Modificar_cuenta();
-                mc.setVisible(true);
-                this.setVisible(false);
+                ad.recibir_id(jTableCarrito.getValueAt(0, 7).toString());
+                ad.leer_datos(ad.recibir_id(id));
+                ad.llenar_datos();
+                this.dispose();
                 break;
             case 1:
                 Login lg = new Login();
@@ -338,7 +345,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnrealizarcompraActionPerformed
 
     private void eliminar_ultima_filaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_ultima_filaActionPerformed
-       
+
     }//GEN-LAST:event_eliminar_ultima_filaActionPerformed
 
     /**
