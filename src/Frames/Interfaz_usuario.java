@@ -124,6 +124,10 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jTableCarrito.setValueAt(valor.toString(), jTableCarrito.getSelectedRow(), 2); // Agrega el codigo del producto
         }
     }
+    public void eliminar(){
+        dtm.removeRow(jTableCarrito.getSelectedRow());
+        fila--;
+    }
 
     @SuppressWarnings("unchecked")
 
@@ -238,6 +242,11 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         });
 
         btneliminarcarrito.setText("Eliminar");
+        btneliminarcarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarcarritoActionPerformed(evt);
+            }
+        });
 
         btnrealizarcompra.setText("REALIZAR COMPRA");
         btnrealizarcompra.addActionListener(new java.awt.event.ActionListener() {
@@ -381,6 +390,10 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     private void btnmodificarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarcarritoActionPerformed
         modificar();
     }//GEN-LAST:event_btnmodificarcarritoActionPerformed
+
+    private void btneliminarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarcarritoActionPerformed
+        eliminar();
+    }//GEN-LAST:event_btneliminarcarritoActionPerformed
 
     /**
      * @param args the command line arguments
