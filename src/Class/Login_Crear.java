@@ -152,6 +152,6 @@ public class Login_Crear {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false; Este comentario viene de github
+        return false;
     }*/
 }
