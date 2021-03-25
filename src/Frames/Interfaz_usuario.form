@@ -45,8 +45,6 @@
                                   <Component id="btnmodificarcarrito" min="-2" pref="150" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btneliminarcarrito" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="eliminar_ultima_fila" min="-2" pref="154" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnrealizarcompra" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
@@ -81,7 +79,6 @@
                           <Component id="btnmodificarcarrito" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btneliminarcarrito" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnrealizarcompra" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="eliminar_ultima_fila" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="61" max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="51" max="-2" attributes="0"/>
@@ -281,14 +278,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel6MouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="eliminar_ultima_fila">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar ultima fila"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminar_ultima_filaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

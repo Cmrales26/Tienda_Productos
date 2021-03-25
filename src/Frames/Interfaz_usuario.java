@@ -26,7 +26,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     DefaultTableModel dtm;
     String usuario, id;
     int fila = 0;
-    int borrar_filas = 0;
+    int filas=1;
     Actualizar_datos ad = new Actualizar_datos();
     String Fecha = Agregar_productos_al_carrito.agregar_fecha();
     int agregar_precio;
@@ -69,7 +69,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         for (Object valor : agregarProductos) {
             jComboproductos.addItem(valor.toString());
         }
-        dtm.setRowCount(1);
     }
 
     public void agregar_carrito() {
@@ -103,9 +102,9 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
             jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
             jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
-
+            jTableCarrito.setValueAt(Integer.toString(filas), fila, 0);
+            filas++;
             fila++;
-            dtm.setRowCount(fila + 1);
         } else {
             JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
         }
@@ -127,7 +126,9 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     public void eliminar(){
         dtm.removeRow(jTableCarrito.getSelectedRow());
         fila--;
+        filas--;
     }
+        
 
     @SuppressWarnings("unchecked")
 
@@ -151,7 +152,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         btnrealizarcompra = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        eliminar_ultima_fila = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -271,13 +271,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             }
         });
 
-        eliminar_ultima_fila.setText("Eliminar ultima fila");
-        eliminar_ultima_fila.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminar_ultima_filaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -302,8 +295,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
                                     .addComponent(btnmodificarcarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btneliminarcarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(eliminar_ultima_fila, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnrealizarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -327,8 +318,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnmodificarcarrito)
                             .addComponent(btneliminarcarrito)
-                            .addComponent(btnrealizarcompra)
-                            .addComponent(eliminar_ultima_fila))
+                            .addComponent(btnrealizarcompra))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54))
@@ -341,6 +331,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnagregarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarcarritoActionPerformed
+        dtm.setRowCount(fila+1);
         agregar_carrito();
     }//GEN-LAST:event_btnagregarcarritoActionPerformed
 
@@ -378,10 +369,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         panefactura.setVisible(true);
         panefactura.setText("AAAAAAAAAAAAAAAAAAAAAAAAA");
     }//GEN-LAST:event_btnrealizarcompraActionPerformed
-
-    private void eliminar_ultima_filaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_ultima_filaActionPerformed
-
-    }//GEN-LAST:event_eliminar_ultima_filaActionPerformed
 
     private void jTableCarritoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarritoMouseReleased
         txtnumerodeproductos.setText(jTableCarrito.getValueAt(jTableCarrito.getSelectedRow(), 4).toString());
@@ -435,7 +422,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     private javax.swing.JButton btneliminarcarrito;
     private javax.swing.JButton btnmodificarcarrito;
     private javax.swing.JButton btnrealizarcompra;
-    private javax.swing.JButton eliminar_ultima_fila;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboproductos;
     private javax.swing.JLabel jLabel1;
