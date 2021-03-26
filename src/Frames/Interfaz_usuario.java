@@ -29,6 +29,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     int filas=1;
     Actualizar_datos ad = new Actualizar_datos();
     String Fecha = Agregar_productos_al_carrito.agregar_fecha();
+    Agregar_Carrito_al_archivo ag = new Agregar_Carrito_al_archivo();
     int agregar_precio;
 
     public Interfaz_usuario(String usuario, String id) {
@@ -127,6 +128,21 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         dtm.removeRow(jTableCarrito.getSelectedRow());
         fila--;
         filas--;
+    }
+    public void realizar_compra(){
+        int i;
+        String no_pedido,fecha_de_compra,codigo,producto,numero,precio,cliente,id_;
+        for (i =0; i<=jTableCarrito.getRowHeight(); i++){
+            no_pedido = jTableCarrito.getValueAt(i, 0).toString();
+            fecha_de_compra = jTableCarrito.getValueAt(i, 1).toString();
+            codigo = jTableCarrito.getValueAt(i, 2).toString();
+            producto= jTableCarrito.getValueAt(i, 3).toString();
+            numero = jTableCarrito.getValueAt(i, 4).toString();
+            precio = jTableCarrito.getValueAt(i, 5).toString();
+            cliente = jTableCarrito.getValueAt(i, 6).toString();
+            id_ = jTableCarrito.getValueAt(i, 7).toString();
+            ag.agregar_al_archivo(no_pedido, fecha_de_compra, codigo, producto, numero, precio, cliente, id);
+        }
     }
         
 
@@ -366,6 +382,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void btnrealizarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrealizarcompraActionPerformed
+        realizar_compra();
         panefactura.setVisible(true);
         panefactura.setText("AAAAAAAAAAAAAAAAAAAAAAAAA");
     }//GEN-LAST:event_btnrealizarcompraActionPerformed
