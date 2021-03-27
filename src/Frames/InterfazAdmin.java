@@ -22,7 +22,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
     DefaultTableModel dtm;
     int filas;
     Productos pr = new Productos();
-
+        //Solucion en esta interfaz
     public InterfazAdmin() {
         initComponents();
         
