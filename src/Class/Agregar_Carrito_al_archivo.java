@@ -20,7 +20,7 @@ public class Agregar_Carrito_al_archivo {
     public boolean agregar_al_archivo(String no_pedido, String fecha_de_compra, String codigo, String producto, String numero, String precio, String cliente,String id) {
         try {
             File archivo = new File(ruta_compras);
-            String Contenido = no_pedido + "|" + fecha_de_compra + "|" + codigo +"|" +producto+ "|" + numero + "|" + precio + "|" + cliente + "|" + id;
+            String Contenido = no_pedido + "," + fecha_de_compra + "," + codigo +"," +producto+ "," + numero + "," + precio + "," + cliente + "," + id;
             if (!archivo.exists()) {
                 archivo.createNewFile();
             }

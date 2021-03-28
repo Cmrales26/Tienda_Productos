@@ -26,12 +26,12 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     DefaultTableModel dtm;
     String usuario, id;
     int fila = 0;
-    int filas=1;
     Actualizar_datos ad = new Actualizar_datos();
     String Fecha = Agregar_productos_al_carrito.agregar_fecha();
     Agregar_Carrito_al_archivo ag = new Agregar_Carrito_al_archivo();
+    Agregar_productos_al_carrito ac = new Agregar_productos_al_carrito();
     int agregar_precio;
-    
+
     public Interfaz_usuario(String usuario, String id) {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -63,6 +63,8 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         jTableCarrito.setValueAt(usuario, 0, 6); // Agrega el usuario
         jTableCarrito.setValueAt(id, 0, 7); // Agrega la id
         jTableCarrito.setValueAt(Fecha, 0, 1); // Agrega la fecha
+
+        ac.obtener_siguiente_consecutivo();
 
         Vector agregarProductos = new Vector();
         agregarProductos = Agregar_productos_al_combo.agregar_productos();
@@ -103,8 +105,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jTableCarrito.setValueAt(usuario, fila, 6); // Agrega el usuario
             jTableCarrito.setValueAt(id, fila, 7); // Agrega la id
             jTableCarrito.setValueAt(Fecha, fila, 1); // Agrega la fecha
-            jTableCarrito.setValueAt(Integer.toString(filas), fila, 0);
-            filas++;
+            jTableCarrito.setValueAt(Agregar_productos_al_carrito.agregar_consecutivo_carrito(), fila, 0);
             fila++;
         } else {
             JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
@@ -124,19 +125,20 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jTableCarrito.setValueAt(valor.toString(), jTableCarrito.getSelectedRow(), 2); // Agrega el codigo del producto
         }
     }
-    public void eliminar(){
+
+    public void eliminar() {
         dtm.removeRow(jTableCarrito.getSelectedRow());
         fila--;
-        filas--;
     }
-    public void realizar_compra(){
+
+    public void realizar_compra() {
         int i;
-        String no_pedido,fecha_de_compra,codigo,producto,numero,precio,cliente,id_;
-        for (i =0; i<=jTableCarrito.getRowHeight(); i++){
+        String no_pedido, fecha_de_compra, codigo, producto, numero, precio, cliente, id_;
+        for (i = 0; i < jTableCarrito.getRowCount(); i++) {
             no_pedido = jTableCarrito.getValueAt(i, 0).toString();
             fecha_de_compra = jTableCarrito.getValueAt(i, 1).toString();
             codigo = jTableCarrito.getValueAt(i, 2).toString();
-            producto= jTableCarrito.getValueAt(i, 3).toString();
+            producto = jTableCarrito.getValueAt(i, 3).toString();
             numero = jTableCarrito.getValueAt(i, 4).toString();
             precio = jTableCarrito.getValueAt(i, 5).toString();
             cliente = jTableCarrito.getValueAt(i, 6).toString();
@@ -144,7 +146,6 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             ag.agregar_al_archivo(no_pedido, fecha_de_compra, codigo, producto, numero, precio, cliente, id);
         }
     }
-        
 
     @SuppressWarnings("unchecked")
 
@@ -346,14 +347,15 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnagregarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarcarritoActionPerformed
-        dtm.setRowCount(fila+1);
+        dtm.setRowCount(fila + 1);
         agregar_carrito();
     }//GEN-LAST:event_btnagregarcarritoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Historial_Compras hc = new Historial_Compras();
-        hc.setVisible(true);
+        ac.agregar_consecutivo_carrito();
+//        Agregar_productos_al_carrito.mostrar();
+        //        Historial_Compras hc = new Historial_Compras();
+        //        hc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -382,6 +384,10 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     private void btnrealizarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrealizarcompraActionPerformed
         realizar_compra();
+        JOptionPane.showMessageDialog(this, "La compra se ha realizado con exito, visite el historial para modificar");
+        this.dispose();
+        Interfaz_usuario ia = new Interfaz_usuario(usuario, id);
+        ia.setVisible(true);
         panefactura.setVisible(true);
         panefactura.setText("AAAAAAAAAAAAAAAAAAAAAAAAA");
     }//GEN-LAST:event_btnrealizarcompraActionPerformed
