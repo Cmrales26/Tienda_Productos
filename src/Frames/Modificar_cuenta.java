@@ -37,7 +37,6 @@ public class Modificar_cuenta extends javax.swing.JFrame {
         txtidentificacion.setText(ids);
         txtpass.setText(passs);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,21 +61,51 @@ public class Modificar_cuenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nombre");
+
+        txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Apellido");
 
+        txtmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmailKeyTyped(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("E-Mail");
 
+        txtidentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidentificacionKeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Múmero de Identificacíon");
+
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpassKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -85,6 +114,12 @@ public class Modificar_cuenta extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Contrseña");
+
+        txtuser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtuserKeyTyped(evt);
+            }
+        });
 
         btnactualizar.setText("ACTUALIZAR DATOS");
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +135,12 @@ public class Modificar_cuenta extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Numero de Telefono");
+
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,25 +220,98 @@ public class Modificar_cuenta extends javax.swing.JFrame {
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         int modificar = JOptionPane.showConfirmDialog(this, "Esta seguro que desea realizar los cambios", "Modificar datos", JOptionPane.YES_NO_CANCEL_OPTION);
-        if (modificar == 0) {
-            JOptionPane.showMessageDialog(this, "Sus datos se han actializado correctamente");
-            String usuario_nuevo = txtuser.getText();
-            String nombre_nuevo = txtnombre.getText();
-            String apellido_nuevo = txtapellido.getText();
-            String email_nuevo = txtmail.getText();
-            String telefono_nuevo = txttelefono.getText();
-            String id_nuevo = txtidentificacion.getText();
-            String pass_nuevo = txtpass.getText();
-            ad.modificar_cliente_archivo(usuario_nuevo, nombre_nuevo, apellido_nuevo, email_nuevo, telefono_nuevo, id_nuevo, pass_nuevo);
-            this.dispose();
-            Interfaz_usuario ia = new Interfaz_usuario(usuario_nuevo,id_nuevo);
-            ia.setVisible(true);
-        } else if (modificar == 1) {
-            JOptionPane.showMessageDialog(this, "Puede seguir realizando sus cambios");
-        } else if (modificar == 2) {
-            return;
+        switch (modificar) {
+            case 0:
+                if (!txtuser.getText().equals("") && !txtnombre.getText().equals("") && !txtapellido.getText().equals("") && !txtmail.getText().equals("") && !txtidentificacion.getText().equals("") && !txtpass.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Sus datos se han actializado correctamente");
+                    String usuario_nuevo = txtuser.getText();
+                    String nombre_nuevo = txtnombre.getText();
+                    String apellido_nuevo = txtapellido.getText();
+                    String email_nuevo = txtmail.getText();
+                    String telefono_nuevo = txttelefono.getText();
+                    String id_nuevo = txtidentificacion.getText();
+                    String pass_nuevo = txtpass.getText();
+                    ad.modificar_cliente_archivo(usuario_nuevo, nombre_nuevo, apellido_nuevo, email_nuevo, telefono_nuevo, id_nuevo, pass_nuevo);
+                    this.dispose();
+                    Interfaz_usuario ia = new Interfaz_usuario(usuario_nuevo, id_nuevo);
+                    ia.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Se encuentran espacios en Blanco");
+                }
+
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(this, "Puede seguir realizando sus cambios");
+                break;
+            case 2:
+                return;
+            default:
+                break;
         }
     }//GEN-LAST:event_btnactualizarActionPerformed
+
+    private void txtuserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtuserKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtapellidoKeyTyped
+
+    private void txtmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmailKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtmailKeyTyped
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void txtidentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidentificacionKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtidentificacionKeyTyped
+
+    private void txtpassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyTyped
+        char validad = evt.getKeyChar();
+        if (Character.isSpaceChar(validad)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "NO SE PERMITEN ESPACIOS");
+        }
+    }//GEN-LAST:event_txtpassKeyTyped
 
     /**
      * @param args the command line arguments

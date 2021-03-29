@@ -1,5 +1,5 @@
 Papitas,1400,001
-Aritos ,1200,002
+Aritos,1200,002
 Chocorramo,2400,003
 Chokis,1200,004
 Yogurt,1200,005
