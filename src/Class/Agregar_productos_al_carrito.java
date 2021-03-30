@@ -109,8 +109,14 @@ public class Agregar_productos_al_carrito {
     }
 
     public static String agregar_consecutivo_carrito() {
-       Consecutivo_final++;
-       String consecutivo_final_String = Integer.toString(Consecutivo_final);
-       return consecutivo_final_String;
+        Consecutivo_final++;
+        String consecutivo_final_String = Integer.toString(Consecutivo_final);
+        return consecutivo_final_String;
+    }
+
+    public static String eliminar_consecutivo_carrito() {
+        Consecutivo_final--;
+        String consecutivo_final_String = Integer.toString(Consecutivo_final);
+        return consecutivo_final_String;
     }
 }

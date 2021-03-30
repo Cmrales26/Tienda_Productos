@@ -127,7 +127,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }
 
     public void modificar() {
-        if (jTableCarrito.getSelectedRow() == 1) {
+        if (jTableCarrito.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "debe Selecionar una fila con valores para poder editar");
         } else {
             jTableCarrito.setValueAt(txtnumerodeproductos.getText(), jTableCarrito.getSelectedRow(), 4);
@@ -144,8 +144,9 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         }
 
     }
+
     public void modificar_historial() {
-        if (jTableCarrito.getSelectedRow() == 1) {
+        if (jTableCarrito.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "debe Selecionar una fila con valores para poder editar");
         } else {
             jTableCarrito.setValueAt(txtnumerodeproductos.getText(), jTableCarrito.getSelectedRow(), 4);
@@ -168,13 +169,13 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }
 
     public void eliminar() {
-        if (jTableCarrito.getSelectedRow() != 1) {
-        dtm.removeRow(jTableCarrito.getSelectedRow());
-        fila--;    
-        }else{
-          JOptionPane.showMessageDialog(this, "debe Selecionar una fila con valores para poder editar");
-    }
-        
+        if (jTableCarrito.getSelectedRow() == 0) {
+            JOptionPane.showMessageDialog(this, "No es posible eliminar Esta fila debido a que debe de haber minimo un producto para realizar la compra");
+        } else {
+            dtm.removeRow(jTableCarrito.getSelectedRow());
+            Agregar_productos_al_carrito.eliminar_consecutivo_carrito();
+            fila--;
+        }
     }
 
     public void realizar_compra() {
