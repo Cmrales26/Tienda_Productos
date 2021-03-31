@@ -122,13 +122,13 @@ public class Interfaz_usuario extends javax.swing.JFrame {
             jTableCarrito.setValueAt(Agregar_productos_al_carrito.agregar_consecutivo_carrito(), fila, 0);
             fila++;
         } else {
-            JOptionPane.showMessageDialog(this, "Solo se admiten numeros mayores a 1");
+            JOptionPane.showMessageDialog(this, "Sólo se admiten numeros mayores a 1");
         }
     }
 
     public void modificar() {
         if (jTableCarrito.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "debe Selecionar una fila con valores para poder editar");
+            JOptionPane.showMessageDialog(this, "Debe selecionar una fila con valores para poder editar");
         } else {
             jTableCarrito.setValueAt(txtnumerodeproductos.getText(), jTableCarrito.getSelectedRow(), 4);
             jTableCarrito.setValueAt(jComboproductos.getSelectedItem().toString(), jTableCarrito.getSelectedRow(), 3);
@@ -147,7 +147,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     public void modificar_historial() {
         if (jTableCarrito.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "debe Selecionar una fila con valores para poder editar");
+            JOptionPane.showMessageDialog(this, "Debe selecionar una fila con valores para poder editar");
         } else {
             jTableCarrito.setValueAt(txtnumerodeproductos.getText(), jTableCarrito.getSelectedRow(), 4);
             txtnumerodeproductos.setText(txtnumerodeproductos.getText());
@@ -170,7 +170,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     public void eliminar() {
         if (jTableCarrito.getSelectedRow() == 0) {
-            JOptionPane.showMessageDialog(this, "No es posible eliminar Esta fila debido a que debe de haber minimo un producto para realizar la compra");
+            JOptionPane.showMessageDialog(this, "No es posible eliminar esta fila debido a que debe haber mínimo un producto para realizar la compra");
         } else {
             dtm.removeRow(jTableCarrito.getSelectedRow());
             Agregar_productos_al_carrito.eliminar_consecutivo_carrito();
@@ -195,12 +195,12 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     }
 
     public void actualizar_historial() {
-        int seguridad_modificad = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar este pedido", "Modificar pedido", JOptionPane.YES_NO_OPTION);
+        int seguridad_modificad = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea modificar este pedido", "Modificar pedido", JOptionPane.YES_NO_OPTION);
         if (seguridad_modificad == 0) {
             modificar_historial.Modificar_producto(txtnuevoproducto.getText(), txtnumerodeproductos.getText(), txtnuevoprecio4.getText(), txtnuevocodpro.getText(), txtnuevonumerocompra.getText());
             JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
         } else {
-            JOptionPane.showMessageDialog(this, "Continue Modificando su porducto");
+            JOptionPane.showMessageDialog(this, "Continúe modificando su porducto");
         }
     }
 
@@ -624,8 +624,8 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
 
-        String[] botones = {"Editar perfil ", "Cerrar Sesion", "Cancelar"};
-        int Mensaje = JOptionPane.showOptionDialog(null, "¿Qué desea hacer?", "Configuracion del perfil", JOptionPane.DEFAULT_OPTION,
+        String[] botones = {"Editar perfil ", "Cerrar Sesión", "Cancelar"};
+        int Mensaje = JOptionPane.showOptionDialog(null, "¿Qué desea hacer?", "Configuración del perfil", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
         switch (Mensaje) {
             case 0:
@@ -648,7 +648,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     private void btnrealizarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrealizarcompraActionPerformed
         realizar_compra();
-        JOptionPane.showMessageDialog(this, "La compra se ha realizado con exito, visite el historial para modificar");
+        JOptionPane.showMessageDialog(this, "La compra se ha realizado con éxito, visite el historial para modificar");
         this.dispose();
         Interfaz_usuario ia = new Interfaz_usuario(usuario, id);
         ia.setVisible(true);
@@ -691,7 +691,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         if (Character.isLetter(validad)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Solo se adminten numeros mayores a 0");
+            JOptionPane.showMessageDialog(this, "Sólo se adminten numeros mayores a 0");
         }
     }//GEN-LAST:event_txtnumerodeproductosKeyTyped
 

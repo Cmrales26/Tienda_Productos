@@ -198,7 +198,7 @@ public class Modificar_cuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        int modificar = JOptionPane.showConfirmDialog(this, "Esta seguro que desea realizar los cambios", "Modificar datos", JOptionPane.YES_NO_CANCEL_OPTION);
+        int modificar = JOptionPane.showConfirmDialog(this, "Está seguro que desea realizar los cambios", "Modificar datos", JOptionPane.YES_NO_CANCEL_OPTION);
         switch (modificar) {
             case 0:
                 if (!txtuser.getText().equals("") && !txtnombre.getText().equals("") && !txtapellido.getText().equals("") && !txtmail.getText().equals("") && !txtidentificacion.getText().equals("") && !txtpass.getText().equals("")) {
@@ -215,7 +215,7 @@ public class Modificar_cuenta extends javax.swing.JFrame {
                     Interfaz_usuario ia = new Interfaz_usuario(usuario_nuevo, id_nuevo);
                     ia.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(this, "Se encuentran espacios en Blanco");
+                    JOptionPane.showMessageDialog(this, "Se encuentran espacios en blanco");
                 }
 
                 break;

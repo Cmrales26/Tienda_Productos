@@ -38,10 +38,10 @@ public class Crear_cuenta extends javax.swing.JFrame {
                 Login lg = new Login();
                 lg.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario o Numero de identificacion ya existente");
+                JOptionPane.showMessageDialog(this, "Usuario o Número de identificacion ya existente");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Se encuntran campos vacios");
+            JOptionPane.showMessageDialog(this, "Se encuentran campos vacios");
         }
     }
 

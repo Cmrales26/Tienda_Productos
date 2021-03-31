@@ -90,13 +90,13 @@ public class InterfazAdmin extends javax.swing.JFrame {
                     pr.guardar_productos(productos_nuevos, txtcodigoproducto.getText());
                     dtm.addRow(productos_nuevos);
                     limpiar();
-                    JOptionPane.showMessageDialog(this, "El producto se guardo satisfactoriamente");
+                    JOptionPane.showMessageDialog(this, "El producto se guardó satisfactoriamente");
                     break;
                 case 1:
-                    JOptionPane.showMessageDialog(this, "Continue con la creación del producto");
+                    JOptionPane.showMessageDialog(this, "Continúe con la creación del producto");
                     break;
                 default:
-                    JOptionPane.showMessageDialog(this, "Continue con la creación del producto");
+                    JOptionPane.showMessageDialog(this, "Continúe con la creación del producto");
                     break;
             }
         } else {
@@ -109,7 +109,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
      String precio = txtprecioproducto.getText();
      String codigo = txtcodigoproducto.getText();
         if (Productos.Modificar_producto(nombre, precio, codigo)) {
-            int seguridad_modificad = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar este producto","Modificar producot",JOptionPane.YES_NO_OPTION);
+            int seguridad_modificad = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar este producto?","Modificar producot",JOptionPane.YES_NO_OPTION);
             switch (seguridad_modificad){
                 case 0:
                     JOptionPane.showMessageDialog(this, "El producto ha sido modificado");
@@ -119,10 +119,10 @@ public class InterfazAdmin extends javax.swing.JFrame {
                     limpiar();
                     break;
                 case 1: 
-                    JOptionPane.showMessageDialog(this, "Continue Modificando el producto");
+                    JOptionPane.showMessageDialog(this, "Continúe Modificando el producto");
                     break;
                 default:
-                    JOptionPane.showMessageDialog(this, "Continue Modificando el producto");
+                    JOptionPane.showMessageDialog(this, "Continúe Modificando el producto");
                     break;
             }
         }
