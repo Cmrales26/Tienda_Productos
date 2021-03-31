@@ -4,7 +4,7 @@ Chocorramo,2400,003
 Chokis,1300,004
 Yogurt,1200,005
 Ducales,800,006
-Festival,1100,007
+Festival,500,007
 Choklitos,800,008
 Fruto (Pera),1400,009
 Galletas (Saltin),2000,010
