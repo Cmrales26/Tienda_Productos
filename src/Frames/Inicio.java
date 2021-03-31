@@ -37,7 +37,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("<html>Super tiendas y Almacenes DVMQ<html>");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 220, 110));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 220, 110));
 
         jButton1.setBackground(new java.awt.Color(0, 51, 51));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -50,7 +50,7 @@ public class Inicio extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 246, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 246, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/super.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 635, 390));
