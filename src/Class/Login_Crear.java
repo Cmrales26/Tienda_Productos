@@ -88,7 +88,7 @@ public class Login_Crear {
             while ((linea = br.readLine()) != null) {
                 String vecLinea[];
                 vecLinea = linea.split(",");
-                if (vecLinea[0].equalsIgnoreCase(usuario) && vecLinea[6].equals(pass) && vecLinea[7].equalsIgnoreCase(tipo)) {
+                if (vecLinea[0].equals(usuario) && vecLinea[6].equals(pass) && vecLinea[7].equalsIgnoreCase(tipo)) {
                     Id = vecLinea[5];
                     br.close();
                     fr.close();
