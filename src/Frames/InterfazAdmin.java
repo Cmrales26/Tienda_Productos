@@ -5,11 +5,13 @@
  */
 package Frames;
 
+import Class.Agregar_compras_interfaz_admin;
 import Class.Productos;
 import java.util.Vector;
 import javax.print.event.PrintJobEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
 
     Login lg = new Login();
     DefaultTableModel dtm;
+    DefaultTableModel dtmtwo;
     int filas;
     Productos pr = new Productos();
         //Solucion en esta interfaz
@@ -42,6 +45,30 @@ public class InterfazAdmin extends javax.swing.JFrame {
         for (Object valor : productos) {
             dtm.addRow((String[]) valor);
         }
+         this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        //dtmtwo = new DefaultTableModel(20, 7);
+        String titu[] = new String[]{"No.Pedido", "Fecha de compra", "Codigo", "Producto", "Cantidad de productos",
+            "Precio Total", "Cliente", "Id del cliente"};
+        
+
+        dtmtwo = new DefaultTableModel (titu,0);
+        jTablehistorial.setModel(dtmtwo);
+
+        jTablehistorial.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTablehistorial.getColumnModel().getColumn(0).setPreferredWidth(48);
+        jTablehistorial.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jTablehistorial.getColumnModel().getColumn(2).setPreferredWidth(30);
+        jTablehistorial.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTablehistorial.getColumnModel().getColumn(4).setPreferredWidth(115);
+        
+        Vector compras = new Vector();
+        compras = Agregar_compras_interfaz_admin.AgregarCompras();
+        for(Object Dato : compras ){
+            dtmtwo.addRow((String[])Dato);
+        }
+        
+        
     }
     
     void limpiar (){
@@ -122,7 +149,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTablehistorial = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         txtbuscarcliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -247,7 +274,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("ADMIN PANEL - TODOS LOS PRODUCTOS COMPRADOS");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTablehistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -258,7 +285,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTablehistorial);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("Buscar Cliente ");
@@ -413,7 +440,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTablehistorial;
     private javax.swing.JTable jTableproductos;
     private javax.swing.JTextField txtbuscarcliente;
     private javax.swing.JTextField txtcodigoproducto;
