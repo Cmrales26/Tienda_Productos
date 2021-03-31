@@ -5,3 +5,4 @@ Jcastillo,Juan,Castillo,Jcasti@gmail.com,3635487,1002641228,castillo123,cliente
 Rivendel,Sharon,Molina,Sharon@gmail.com,301436587,26157136,qwertzaz,cliente
 Lmarce,Lina,Marcela,LMarce@gmail.com,345386173,100245281,Lmarce,cliente
 pao.jm,Angelica,Vidal,pao@gmail.com,302673459,1001998043,12345678,cliente
+ladivapup.,lorena,vivi,vivilorena14@hotmail.com,3024534154,1022553468,verygood,cliente
