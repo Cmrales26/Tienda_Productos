@@ -12,7 +12,9 @@ import javax.print.event.PrintJobEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -28,7 +30,8 @@ public class InterfazAdmin extends javax.swing.JFrame {
         //Solucion en esta interfaz
     public InterfazAdmin() {
         initComponents();
-        
+        btnmodifikr.setVisible(false);
+        txtbuscar.setText("Buscar por : Identificación, fecha o usuario");
         this.setLocationRelativeTo(this);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         String titulos[] = new String[]{
@@ -140,7 +143,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtbuscarcliente = new javax.swing.JTextField();
         txtbuscar = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -152,14 +155,15 @@ public class InterfazAdmin extends javax.swing.JFrame {
         txtnombreproducto = new javax.swing.JTextField();
         txtprecioproducto = new javax.swing.JTextField();
         txtcodigoproducto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnagg = new javax.swing.JButton();
+        btnmodifikr = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Interfaz administrador");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 180, 209));
@@ -184,44 +188,49 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("Buscar Cliente ");
 
+        txtbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtbuscarMouseClicked(evt);
+            }
+        });
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtbuscarActionPerformed(evt);
             }
         });
-
-        btnbuscar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/find.png"))); // NOI18N
-        btnbuscar.setText("Buscar");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
+        txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscarKeyReleased(evt);
             }
         });
+
+        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/find.png"))); // NOI18N
+        jLabel11.setText("Buscar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(btnbuscar)
-                .addGap(18, 18, 18)
-                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtbuscarcliente))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtbuscarcliente))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -231,11 +240,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar))
-                .addGap(1546, 1546, 1546)
+                    .addComponent(jLabel11))
+                .addGap(1548, 1548, 1548)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +257,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tienda.png"))); // NOI18N
         jLabel1.setText("Super tiendas y Almacenes DVMQ ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 620, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 620, -1));
 
         jPanel1.setBackground(new java.awt.Color(153, 180, 209));
 
@@ -290,21 +299,21 @@ public class InterfazAdmin extends javax.swing.JFrame {
         Codigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/analysis.png"))); // NOI18N
         Codigo.setText("Codigo");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/boton-agregar (1).png"))); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnagg.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        btnagg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/boton-agregar (1).png"))); // NOI18N
+        btnagg.setText("Agregar");
+        btnagg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnaggActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnmodifikr.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        btnmodifikr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
+        btnmodifikr.setText("Modificar");
+        btnmodifikr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnmodifikrActionPerformed(evt);
             }
         });
 
@@ -328,10 +337,10 @@ public class InterfazAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(btnagg, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnmodifikr, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,10 +382,8 @@ public class InterfazAdmin extends javax.swing.JFrame {
                     .addComponent(txtcodigoproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)))
+                    .addComponent(btnmodifikr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnagg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -386,13 +393,13 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancel.png"))); // NOI18N
-        jLabel8.setText("CERRAR SESION");
+        jLabel8.setText("CERRAR SESIÓN");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, 170, 42));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 40, 170, 42));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/faxtu5.jpg"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 600));
@@ -407,9 +414,9 @@ public class InterfazAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaggActionPerformed
         guardar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnaggActionPerformed
 
     private void jTableproductosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableproductosMouseReleased
         txtnombreproducto.setText(jTableproductos.getValueAt(jTableproductos.getSelectedRow(), 0).toString());
@@ -418,70 +425,49 @@ public class InterfazAdmin extends javax.swing.JFrame {
         txtcodigoproducto.setEditable(false);
         jTableproductos.setEnabled(false);
         jTableproductos.setEnabled(true);
+        btnmodifikr.setVisible(true);
+         
     }//GEN-LAST:event_jTableproductosMouseReleased
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnmodifikrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifikrActionPerformed
         txtcodigoproducto.setEditable(true);
         jTableproductos.setEnabled(true);
         modicar_producto();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        btnmodifikr.setVisible(false);
+    }//GEN-LAST:event_btnmodifikrActionPerformed
 
     private void txtbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarActionPerformed
     
        
     }//GEN-LAST:event_txtbuscarActionPerformed
 
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        dtmtwo.setNumRows(0);
-        Vector buskr = new Vector();
-        buskr = Agregar_compras_interfaz_admin.Buscar(txtbuscar.getText());
-        for(Object Dato : buskr ){
-            dtmtwo.addRow((String[])Dato);
-        }
-    }//GEN-LAST:event_btnbuscarActionPerformed
+    private void txtbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyReleased
+        
+        //Es posible buscar por: fechas, usuario o id.
+        DefaultTableModel dt =  (DefaultTableModel)jTablehistorial.getModel();
+        String busqueda = txtbuscar.getText();
+        TableRowSorter<DefaultTableModel> reader = new TableRowSorter<DefaultTableModel>(dt);
+        jTablehistorial.setRowSorter(reader);
+        reader.setRowFilter(RowFilter.regexFilter(busqueda));
+        
+    }//GEN-LAST:event_txtbuscarKeyReleased
+
+    private void txtbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtbuscarMouseClicked
+         txtbuscar.setText(" ");
+    }//GEN-LAST:event_txtbuscarMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazAdmin().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Codigo;
-    private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnagg;
+    private javax.swing.JButton btnmodifikr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

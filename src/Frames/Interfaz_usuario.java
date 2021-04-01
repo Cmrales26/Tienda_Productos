@@ -247,6 +247,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Interfaz usuario");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tienda.png"))); // NOI18N
@@ -509,7 +510,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -576,7 +577,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -623,7 +624,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         jLabel11.setVisible(true);
         txtnuevoprecio4.setVisible(true);
         jLabel12.setForeground(Color.red);
-        jLabel12.setText("<html>Escoja de la lista el producto que desea selecionar *SOLO SE PUEDE MODIFICAR UN PRODUCTO A LA VEZ<html>");
+        jLabel12.setText("<html>Escoja de la lista el producto que desea modificar, luego seleccione el producto nuevo que quiera y escriba la cantidad. *SÓLO SE PUEDE MODIFICAR UN PRODUCTO A LA VEZ* :)<html>");
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -661,7 +662,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     private void jTableCarritoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCarritoMouseReleased
         txtnumerodeproductos.setText(jTableCarrito.getValueAt(jTableCarrito.getSelectedRow(), 4).toString());
         jLabel12.setForeground(Color.red);
-        jLabel12.setText("<html>En el campo superior modifique a su gusto el producto y precione MODIFICAR<html>");
+        jLabel12.setText("<html>En el campo superior modifique a su gusto el producto y presione MODIFICAR<html>");
     }//GEN-LAST:event_jTableCarritoMouseReleased
 
     private void btnmodificarcarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarcarritoActionPerformed
@@ -680,6 +681,13 @@ public class Interfaz_usuario extends javax.swing.JFrame {
 
     private void Cambiar_valores_en_el_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cambiar_valores_en_el_archivoActionPerformed
         actualizar_historial();
+        jLabel12.setForeground(Color.red);
+        jLabel12.setText("<html>Escoja de la lista el producto que desea modificar, luego seleccione el producto nuevo que quiera y escriba la cantidad. *SÓLO SE PUEDE MODIFICAR UN PRODUCTO A LA VEZ* :)<html>");
+        txtnuevonumerocompra.setText(" ");
+        txtnuevoproducto.setText(" ");
+        txtnuevoprecio4.setText(" ");
+        txtnuevocodpro.setText(" ");
+        Cambiar_valores_en_el_archivo.setVisible(false);
     }//GEN-LAST:event_Cambiar_valores_en_el_archivoActionPerformed
 
     private void btnmodificarhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarhistorialActionPerformed
@@ -687,7 +695,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
         Cambiar_valores_en_el_archivo.setVisible(true);
         Cambiar_valores_en_el_archivo.setEnabled(true);
         jLabel12.setForeground(Color.red);
-        jLabel12.setText("<html>En la parte superior se encuentran los cambios que se realizaran sobre su compra, si esta seguro de realizar los cambios precione MODIFICAR EN EL ARCHIVO, si no lo está continue modificando su producto<html>");
+        jLabel12.setText("<html>En la parte superior se encuentran los cambios que se realizaran sobre su compra, si está seguro de realizar los cambios presione MODIFICAR EN EL ARCHIVO, si no lo está continúe modificando su producto<html>");
     }//GEN-LAST:event_btnmodificarhistorialActionPerformed
 
     private void txtnuevoproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnuevoproductoActionPerformed
@@ -706,45 +714,7 @@ public class Interfaz_usuario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_usuario.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_usuario.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_usuario.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz_usuario.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interfaz_usuario("", "").setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cambiar_valores_en_el_archivo;

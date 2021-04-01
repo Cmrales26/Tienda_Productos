@@ -43,30 +43,4 @@ public class Agregar_compras_interfaz_admin {
         return AC;
     }
 
-    public static Vector Buscar(String cod) {
-        String ruta = "./compras.txt";
-        Vector DC = new Vector();
-        try {
-            FileReader FileR = new FileReader(ruta);
-            BufferedReader BufferedR = new BufferedReader(FileR);
-
-            String line;
-
-            while ((line = BufferedR.readLine()) != null) {
-                String Vecline[];
-                Vecline = line.split(",");
-                if (Vecline[6].equalsIgnoreCase(cod)) {
-                    DC.add(Vecline);
-                }
-            }
-
-            FileR.close();
-            BufferedR.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return DC;
-    }
 }

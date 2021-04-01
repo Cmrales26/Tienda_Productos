@@ -1,8 +1,8 @@
-Papitas,1400,001
+Papitas,1500,001
 Aritos,1200,002
 Chocorramo,2400,003
 Chokis,1300,004
-Yogurt,1200,005
+Yogurt,1000,005
 Ducales,800,006
 Festival,500,007
 Choklitos,800,008
@@ -15,3 +15,4 @@ Doritos,2000,014
 Pan,2000,015
 cocacola,3000,016
 Speedmax,2000,017
+Doritos,2000,018

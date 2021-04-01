@@ -115,12 +115,12 @@ public class Login_Crear {
             switch (Mensaje) {
                 case 0:
                     Interfaz_usuario iu = new Interfaz_usuario(usuario, Id);
-                    JOptionPane.showMessageDialog(null, "Haz ingresado como cliente");
+                    JOptionPane.showMessageDialog(null, "Has ingresado como cliente");
                     iu.setVisible(true);
                     break;
                 case 1:
                     InterfazAdmin ia = new InterfazAdmin();
-                    JOptionPane.showMessageDialog(null, "Haz ingresado como Administrador");
+                    JOptionPane.showMessageDialog(null, "Has ingresado como Administrador");
                     ia.setVisible(true);
                 case 2:
                     
